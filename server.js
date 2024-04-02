@@ -14,13 +14,14 @@ const express = require("express");
 const path = require("path");
 const legoData = require("./modules/legoSets");
 const clientSessions = require('client-sessions');
+const mongoose=require('mongoose');
 const { getAllThemes, addSet, editSet, getSetByNum, deleteSet} = require('./modules/legoSets'); 
 
 const authData = require('./modules/auth-service');
 
 const app = express();
 const PORT = process.env.PORT||8080;
-
+mongoose.set('strictQuery',false);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
 
