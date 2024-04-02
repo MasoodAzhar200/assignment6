@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Set</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .centered-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Ensure it takes at least the height of the viewport */
+      background-color: grey;
+    }
+
+    .form-container {
+      width: 100%; /* Full width */
+      max-width: 640px; /* Maximum width */
+      padding: 20px;
+      margin: 0 auto; /* Center horizontally */
+      text-align: center; /* Center text */
+      background-color: #f2f2f2;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .fancy-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .fancy-button:hover {
+      background-color: #0056b3;
+    }
+
+    input, select {
+      width: calc(100% - 24px);
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <%- include('partials/_navbar') %>
+
+  <!-- Centered Form Container -->
+  <div class="centered-form">
+    <div class="form-container">
+      <h1 class="text-5xl font-bold mb-4">Add New Set</h1>
+      <form action="/lego/addSet" method="POST">
+        <input type="text" name="name" required placeholder="Set Name" />
+        <input type="number" name="year" required placeholder="Year" />
+        <input type="number" name="num_parts" required placeholder="Number of Parts" />
+        <input type="url" name="img_url" required placeholder="Image URL" />
+        <select name="theme_id" required>
+          <% themes.forEach(theme => { %>
+            <option value="<%= theme.id %>"><%= theme.name %></option>
+          <% }); %>
+        </select>
+        <input type="text" name="set_num" required placeholder="Set Number" />
+        <button type="submit" class="fancy-button">Add Set</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title class="ml-30 text-5xl font-bold">Lego Collection</title>
+  <style>
+  html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.centered-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensure it takes at least the height of the viewport */
+  background-color: grey;
+}
+
+.form-container {
+  width: 100%; /* Full width */
+  max-width: 640px; /* Maximum width */
+  padding: 20px;
+  margin: 0 auto; /* Center horizontally */
+  text-align: center; /* Center text */
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Center cards within the container */
+  gap: 20px; /* Space between cards */
+}
+
+.card {
+  width: 100%;
+  max-width: 300px; /* Maximum width of each card */
+  margin: 20px; /* Margin around cards */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 10px; /* Rounded corners */
+  background-color: white;
+}
+
+.card1 {
+  width: 100%;
+  max-width: 300px; /* Maximum width of each card */
+  margin: 20px; /* Margin around cards */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 10px; /* Rounded corners */
+  background-color: white;
+}
+
+.card img {
+  max-width: 100%; /* Make images responsive */
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 20px; /* Space below images */
+}
+
+  </style>
+  
+</head>
+<body class="bg-gray-100">
+    
+  <%- include('partials/_navbar') %>
+  
+  <!-- Centered Container for Content -->
+  <div class="centered-form">
+    <div class="card1">
+      <h1 class="text-5xl font-bold">Welcome to the Lego Collection!</h1>
+      <p class="py-6">Ready to explore the world of Lego? Discover sets from various themes and find your next build right here.</p>
+      <a href="/lego/sets" class="btn btn-primary">Explore Sets</a>
+      
+      <!-- Cards Container -->
+      <div class="cards-container mt-8">
+        
+        <!-- Card 1 -->
+        <div class="card">
+          <a href="/lego/sets/0011-2" class="btn">View Set</a>
+          <img src="https://cdn.rebrickable.com/media/sets/0011-2.jpg" alt="Town Mini-Figures">
+          <h2>Town Mini-Figures</h2>
+          <p>The 'Town Mini-Figures' set features a variety of small Lego people designed to populate your Lego town...</p>
+        </div>
+        
+        <!-- Card 2 -->
+        <div class="card">
+          <a href="/lego/sets/0011-3" class="btn">View Set</a>
+          <img src="https://cdn.rebrickable.com/media/sets/0011-3.jpg" alt="Lion Knights">
+          <h2>Lion Knights</h2>
+          <p>The 'Lion Knights' set transports you to a medieval world filled with bravery and battles...</p>
+        </div>
+        
+        <!-- Card 3 -->
+        <div class="card">
+          <a href="/lego/sets/0012-1" class="btn">View Set</a>
+          <img src="https://cdn.rebrickable.com/media/sets/0012-1.jpg" alt="Space Mini-Figures">
+          <h2>Space Mini-Figures</h2>
+          <p>The 'Space Mini-Figures' set takes you on an interstellar adventure with astronauts and alien figures...</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+      
+  
+    <!-- Footer -->
+    <footer class="bg-gray-800 p-4 text-white text-center">
+      <p>Made with love by Lego Enthusiasts.</p>
+    </footer>
+    <script>
+        document.getElementById('themeButton').onclick = function() {
+          var dropdown = document.getElementById('themeDropdown');
+          dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        };
+      </script>
+  </body>
+
+</html>

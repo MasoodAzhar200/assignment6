@@ -1,0 +1,85 @@
+<style>
+  /* Rest of your styles... */
+
+  html, body {
+height: 100%;
+margin: 0;
+font-family: Arial, sans-serif;
+}
+
+ .account-menu {
+    display: none;
+    position: absolute;
+    right: 10px; /* Adjust as needed */
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000; /* To ensure it's above other elements */
+  }
+
+  .account-btn:hover + .account-menu,
+  .account-menu:hover {
+    display: block;
+  }
+
+  .account-btn {
+    background: none;
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  /* Add other styles below */
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  /* Set up the navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    align-items: center;
+  }
+  .navbar a {
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  .navbar a:hover {
+    background-color: #555;
+  }
+  /* Content area */
+  .container {
+    padding: 20px;
+  }
+</style>
+
+<nav class="navbar">
+  <a href="/" class="<%= typeof active !== 'undefined' && active === 'home' ? 'active' : '' %>">Lego Collection</a>
+  <div class="nav-links">
+    <a href="/lego/sets" class="<%= typeof active !== 'undefined' && active === 'collection' ? 'active' : '' %>">View Collection</a>
+    <a href="/about" class="<%= typeof active !== 'undefined' && active === 'about' ? 'active' : '' %>">About</a>
+  </div>
+
+  <% if(session.user){ %>
+    <button class="account-btn">Account: <%= session.user.userName %></button>
+    <div class="account-menu">
+      <a href="/lego/addSet" class="<%= (page == "/lego/addSet") ? 'active' : '' %>">Add to Collection</a>
+      <a href="/userHistory" class="<%= (page == "/userHistory") ? 'active' : '' %>">User History</a>
+      <a href="/logout">Log Out</a>
+    </div>
+  <% } else { %>
+    <button class="account-btn">Account</button>
+    <div class="account-menu">
+      <a href="/login" class="<%= typeof page !== 'undefined' && page === '/login' ? 'active' : '' %>">Login</a>
+      <a href="/register" class="<%= typeof page !== 'undefined' && page === '/register' ? 'active' : '' %>">Register</a>
+    </div>
+  <% } %>
+</nav>

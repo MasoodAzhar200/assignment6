@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Set: <%= set.name %></title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .centered-form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Ensure it takes at least the height of the viewport */
+      background-color: #f0f0f0;
+    }
+    .form-container {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      width: 100%; /* Full width */
+      max-width: 640px; /* Maximum width */
+    }
+    .form-container input,
+    .form-container select,
+    .form-container button {
+      width: 100%; /* Full width */
+      padding: 10px;
+      margin: 10px 0; /* Space between inputs */
+    }
+    .form-container button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .form-container button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <%- include('partials/_navbar') %>
+
+  <!-- Centered Form Container -->
+  <div class="centered-form">
+    <div class="form-container">
+      <h1>Edit Set: <%= set.name %></h1>
+      <form action="/lego/editSet" method="POST">
+        <input type="hidden" name="set_num" value="<%= set.set_num %>" readonly>
+        <input type="text" name="name" required placeholder="Set Name" value="<%= set.name %>">
+        <input type="number" name="year" required placeholder="Year" value="<%= set.year %>">
+        <input type="number" name="num_parts" required placeholder="Number of Parts" value="<%= set.num_parts %>">
+        <input type="url" name="img_url" required placeholder="Image URL" value="<%= set.img_url %>">
+        <select name="theme_id" required>
+          <% themes.forEach(theme => { %>
+            <option value="<%= theme.id %>" <%= set.theme_id === theme.id ? 'selected' : '' %>><%= theme.name %></option>
+          <% }); %>
+        </select>
+        <button type="submit">Update Set</button>
+      </form>
+      <a href="/lego/deleteSet/<%= set.set_num %>" class="btn btn-error" onclick="return confirm('Are you sure you want to delete this set?');">Delete Set</a>
+    </div>
+  </div>
+</body>
+</html>

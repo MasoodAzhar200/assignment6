@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= set.name %></title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .centered-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh; /* Ensure it takes at least the height of the viewport */
+    }
+    .set-detail img {
+      max-width: 100%; /* Make image responsive */
+      height: auto; /* Maintain aspect ratio */
+    }
+    .details p {
+      margin: 10px 0; /* Space between paragraphs */
+    }
+    .back-button {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .back-button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <%- include('partials/_navbar') %>
+  
+  <!-- Centered Content -->
+  <div class="centered-content">
+    <div class="set-detail">
+      <h1 class="text-3xl font-bold my-4"><%= set.name %></h1>
+      <img src="<%= set.img_url %>" alt="<%= set.name %>" class="set-img">
+      <div class="details">
+          <p><strong>Set Number:</strong> <%= set.set_num %></p>
+          <p><strong>Year:</strong> <%= set.year %></p>
+          <p><strong>Theme:</strong> <%= set.Theme.name %></p>
+          <p><strong>Number of Parts:</strong> <%= set.num_parts %></p>
+      </div>
+      <div id="quote" class="quote"></div>
+      <a href="#" onclick="history.back(); return false;" class="back-button">Go Back</a>
+    </div>
+  </div>
+  
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    fetch('https://quotable.io/random')
+      .then(response => response.json())
+      .then(data => {
+        const quoteElement = document.getElementById('quote');
+        quoteElement.innerHTML = `<p>${data.content}</p><p>- ${data.author}</p>`;
+      })
+      .catch(error => console.error('Error fetching quote:', error));
+  });
+  </script>
+</body>
+</html>
